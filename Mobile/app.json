@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "JK Analytics",
+    "slug": "jkindia-analytics",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fcfaf4"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jkindia.analytics"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#fcfaf4"
+      },
+      "package": "com.jkindia.analytics"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a2f1619a-cd07-4d87-b0e7-e92482a4c438"
+      }
+    },
+    "owner": "ruturaj90"
+  }
+}

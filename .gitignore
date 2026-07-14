@@ -1,0 +1,32 @@
+node_modules/
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+.env
+.env.local
+
+# macOS
+.DS_Store
+
+# Native build outputs
+android/
+ios/
+
+npm-debug.*
+yarn-error.*
+
+# Python virtual environments / secrets — never commit
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+*.pyc
+*serviceaccount*.json
+*credentials*.json
