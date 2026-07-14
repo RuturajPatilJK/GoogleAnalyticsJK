@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "JK Analytics",
+    "name": "JK India",
     "slug": "jkindia-analytics",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/jkindia.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/jkindia.png",
         "backgroundColor": "#fcfaf4"
       },
       "package": "com.jkindia.analytics"
