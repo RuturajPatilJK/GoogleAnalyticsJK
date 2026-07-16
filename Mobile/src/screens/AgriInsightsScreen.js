@@ -174,7 +174,7 @@ export default function AgriInsightsScreen({ navigation }) {
   return (
     <GestureHandlerRootView style={styles.root}>
       <ScreenHeader
-        title="AgriInsights"
+        title="AgriInsite"
         subtitle="Article publishing analytics"
         url="https://agriinsite.com"
         accent={ACCENT}
@@ -222,7 +222,7 @@ export default function AgriInsightsScreen({ navigation }) {
         {loading && (
           <View style={styles.loadBox}>
             <ActivityIndicator color={ACCENT} size="large" />
-            <Text style={styles.loadText}>Fetching AgriInsights…</Text>
+            <Text style={styles.loadText}>Fetching AgriInsite...</Text>
           </View>
         )}
 

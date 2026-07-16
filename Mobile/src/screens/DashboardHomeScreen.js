@@ -40,7 +40,7 @@ const CARDS = [
   },
   {
     screen:   'AgriInsights',
-    label:    'AgriInsights',
+    label:    'AgriInsite',
     sub:      'Agriculture & commodity portal analytics',
     accent:   '#16a34a',
     url:      'agriinsite.com',
@@ -84,7 +84,7 @@ export default function DashboardHomeScreen({ navigation }) {
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={styles.headerTitle} numberOfLines={1}>Google Analytics</Text>
-            <Text style={styles.headerSub} numberOfLines={1}>Live Dashboard · JK India eAgriTech Limited</Text>
+            <Text style={styles.headerSub} numberOfLines={1}>JK India eAgriTech Limited</Text>
           </View>
         </View>
         <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn} activeOpacity={0.75}>
@@ -105,7 +105,7 @@ export default function DashboardHomeScreen({ navigation }) {
             </View>
           </View>
 
-          <Text style={styles.sectionLabel}>Select Dashboard</Text>
+          <Text style={styles.sectionLabel}>Portal Analytics</Text>
 
           {CARDS.map((card) => (
             <TouchableOpacity
@@ -130,7 +130,7 @@ export default function DashboardHomeScreen({ navigation }) {
                   </TouchableOpacity>
                 </View>
                 <View style={[styles.arrowBadge, { borderColor: card.accent + '44', backgroundColor: card.accent + '14' }]}>
-                  <Text style={[styles.arrowText, { color: card.accent }]}>→</Text>
+                  <Text style={[styles.arrowText, { color: card.accent }]}>↗</Text>
                 </View>
               </View>
             </TouchableOpacity>

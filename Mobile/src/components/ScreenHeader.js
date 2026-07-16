@@ -11,7 +11,7 @@ export default function ScreenHeader({ title, subtitle, accent = C.accent, onBac
   return (
     <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
       <TouchableOpacity onPress={onBack} style={styles.backBtn} activeOpacity={0.7}>
-        <Text style={[styles.backIcon, { color: accent }]}>{'←'}</Text>
+        <Text style={[styles.backIcon, { color: accent }]}>{'↩'}</Text>
       </TouchableOpacity>
 
       {logoSrc ? (
