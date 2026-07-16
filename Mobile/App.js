@@ -1,6 +1,6 @@
 import 'react-native-url-polyfill/auto';
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,6 +15,7 @@ import {
 } from '@expo-google-fonts/signika';
 
 import { C } from './src/theme';
+import SplashOverlay from './src/components/SplashOverlay';
 
 import LoginScreen         from './src/screens/LoginScreen';
 import DashboardHomeScreen from './src/screens/DashboardHomeScreen';
@@ -34,6 +35,7 @@ export default function App() {
     Signika_600SemiBold,
     Signika_700Bold,
   });
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
@@ -66,6 +68,7 @@ export default function App() {
             <Stack.Screen name="SEIC"           component={SEICScreen} />
           </Stack.Navigator>
         </NavigationContainer>
+        {showSplash && <SplashOverlay onFinish={() => setShowSplash(false)} />}
       </View>
     </SafeAreaProvider>
   );
