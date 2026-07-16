@@ -167,7 +167,7 @@ export default function SEICScreen({ navigation }) {
         accent={ACCENT}
         badge="Live"
         logoSrc={LOGO}
-        logoBg="#1e1240"
+        logoBg="#2f6b3f"
         onBack={() => navigation.goBack()}
       />
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>

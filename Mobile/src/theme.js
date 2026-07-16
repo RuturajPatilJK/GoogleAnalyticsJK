@@ -41,6 +41,7 @@ export const RANGE_OPTIONS = [
   { key: 'week',      label: '7 Days' },
   { key: 'month',     label: '30 Days' },
   { key: 'year',      label: 'Year' },
+  { key: 'custom',    label: 'Custom' },
 ];
 
 export const EBS_RANGE_OPTIONS = [

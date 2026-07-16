@@ -115,7 +115,7 @@ export default function DashboardHomeScreen({ navigation }) {
               style={[styles.card, { borderTopColor: card.accent }]}
             >
               <View style={styles.cardBody}>
-                <View style={[styles.logoWrap, { borderColor: card.accent + '33', backgroundColor: card.screen === 'SEIC' ? '#1e1240' : '#ffffff' }]}>
+                <View style={[styles.logoWrap, { borderColor: card.accent + '33', backgroundColor: card.screen === 'SEIC' ? '#2f6b3f' : '#ffffff' }]}>
                   <Image
                     source={LOGOS[card.screen]}
                     style={styles.cardLogo}

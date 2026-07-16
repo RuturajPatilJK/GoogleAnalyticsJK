@@ -439,7 +439,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   View, Text, StyleSheet, ActivityIndicator,
-  TouchableOpacity, useWindowDimensions,
+  TextInput, TouchableOpacity, useWindowDimensions,
 } from 'react-native';
 import {
   ScrollView, GestureHandlerRootView,
@@ -469,6 +469,8 @@ const fmtDateFull = (d) => {
   if (!d || d.length !== 8) return d;
   return `${MONTHS[parseInt(d.slice(4, 6), 10) - 1]} ${d.slice(6, 8)}, ${d.slice(0, 4)}`;
 };
+
+const today = () => new Date().toISOString().slice(0, 10);
 
 // Bar chart drawn at its full content width, then placed in our own
 // horizontal ScrollView — guarantees scrolling works (not dependent on the
@@ -530,20 +532,29 @@ export default function GASiteScreen({ navigation, siteKey, title, subtitle, acc
   const CHART_W = SW - PAD * 2 - 32;
 
   const [range, setRange]       = useState('week');
+  const [start, setStart]       = useState(today());
+  const [end, setEnd]           = useState(today());
   const [data, setData]         = useState(null);
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState(null);
 
-  const fetch = useCallback((r) => {
+  const fetch = useCallback((r, s, e) => {
     setLoading(true);
     setError(null);
-    getGA4(siteKey, r)
+    getGA4(siteKey, r, s, e)
       .then(res => setData(res.data?.[siteKey] || null))
       .catch(e => setError(e.message || 'Failed to load'))
       .finally(() => setLoading(false));
   }, [siteKey]);
 
-  useEffect(() => { fetch(range); }, [fetch, range]);
+  useEffect(() => { fetch(range, '', ''); }, [fetch]);
+
+  const handleRange = (r) => {
+    setRange(r);
+    if (r !== 'custom') fetch(r, '', '');
+  };
+
+  const handleCustomApply = () => fetch('custom', start, end);
 
   const kpi = data?.kpi || {};
   const trend = data?.trend || [];
@@ -627,9 +638,41 @@ export default function GASiteScreen({ navigation, siteKey, title, subtitle, acc
         <RangeBar
           options={RANGE_OPTIONS}
           selected={range}
-          onSelect={(r) => { setRange(r); fetch(r); }}
+          onSelect={handleRange}
           accent={accent}
         />
+
+        {range === 'custom' && (
+          <View style={styles.customRow}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.dateLabel}>Start Date</Text>
+              <TextInput
+                style={styles.dateInput}
+                value={start}
+                onChangeText={setStart}
+                placeholder="YYYY-MM-DD"
+                placeholderTextColor={C.dimmed}
+                color={C.text}
+                fontFamily={FONTS.regular}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.dateLabel}>End Date</Text>
+              <TextInput
+                style={styles.dateInput}
+                value={end}
+                onChangeText={setEnd}
+                placeholder="YYYY-MM-DD"
+                placeholderTextColor={C.dimmed}
+                color={C.text}
+                fontFamily={FONTS.regular}
+              />
+            </View>
+            <TouchableOpacity style={[styles.applyBtn, { borderColor: accent }]} onPress={handleCustomApply} activeOpacity={0.8}>
+              <Text style={[styles.applyText, { color: accent }]}>Apply</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {loading && (
           <View style={styles.loadBox}>
@@ -641,7 +684,7 @@ export default function GASiteScreen({ navigation, siteKey, title, subtitle, acc
         {error && !loading && (
           <View style={styles.errorBox}>
             <Text style={styles.errorText}>⚠ {error}</Text>
-            <TouchableOpacity onPress={() => fetch(range)} style={[styles.retryBtn, { borderColor: accent }]}>
+            <TouchableOpacity onPress={() => fetch(range, start, end)} style={[styles.retryBtn, { borderColor: accent }]}>
               <Text style={[styles.retryText, { color: accent }]}>Retry</Text>
             </TouchableOpacity>
           </View>
@@ -861,6 +904,17 @@ export default function GASiteScreen({ navigation, siteKey, title, subtitle, acc
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: C.bg },
   scroll: { padding: PAD, paddingTop: 14 },
+  customRow: { flexDirection: 'row', gap: 8, marginTop: 2, marginBottom: 6, alignItems: 'flex-end' },
+  dateLabel: { color: C.dimmed, fontSize: 10, fontFamily: FONTS.semi, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 },
+  dateInput: {
+    backgroundColor: C.surface, borderWidth: 1, borderColor: C.border,
+    borderRadius: 10, padding: 10, fontSize: 13, color: C.text,
+  },
+  applyBtn: {
+    borderWidth: 1, borderRadius: 10, paddingHorizontal: 14,
+    paddingVertical: 10, alignSelf: 'flex-end',
+  },
+  applyText: { fontFamily: FONTS.semi, fontSize: 13 },
   loadBox: { alignItems: 'center', paddingVertical: 40, gap: 12 },
   loadText: { color: C.muted, fontFamily: FONTS.regular, fontSize: 13 },
   errorBox: { alignItems: 'center', paddingVertical: 30, gap: 12 },
