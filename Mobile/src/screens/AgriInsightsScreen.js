@@ -291,16 +291,6 @@ export default function AgriInsightsScreen({ navigation }) {
           </>
         )}
 
-        {/* ══════════════ Website Traffic (Google Analytics 4) ══════════════ */}
-        <Text style={styles.sectionDivider}>Website Traffic · GA4</Text>
-
-        {gaLoading && (
-          <View style={styles.loadBox}>
-            <ActivityIndicator color={ACCENT} size="large" />
-            <Text style={styles.loadText}>Fetching website analytics…</Text>
-          </View>
-        )}
-
         {gaError && !gaLoading && (
           <View style={styles.errorBox}>
             <Text style={styles.errorText}>⚠ {gaError}</Text>
@@ -477,10 +467,6 @@ const styles = StyleSheet.create({
   langRowVal: { color: C.text, fontSize: 12, fontFamily: FONTS.bold, flexShrink: 0 },
   langRowTrack: { height: 6, borderRadius: 99, backgroundColor: C.border, overflow: 'hidden' },
   langRowFill: { height: '100%', borderRadius: 99 },
-  sectionDivider: {
-    color: C.dimmed, fontSize: 10.5, fontFamily: FONTS.bold, textTransform: 'uppercase',
-    letterSpacing: 1.2, marginTop: 18, marginBottom: 10,
-  },
   rangeCaption: { color: C.dimmed, fontSize: 10.5, fontFamily: FONTS.regular, textAlign: 'center', marginTop: 8 },
   legendRow: { flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 },
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },

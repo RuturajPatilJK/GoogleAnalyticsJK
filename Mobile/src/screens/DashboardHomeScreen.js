@@ -84,7 +84,7 @@ export default function DashboardHomeScreen({ navigation }) {
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={styles.headerTitle} numberOfLines={1}>Google Analytics</Text>
-            <Text style={styles.headerSub} numberOfLines={1}>Live Dashboard · JK India eAgriTech</Text>
+            <Text style={styles.headerSub} numberOfLines={1}>Live Dashboard · JK India eAgriTech Limited</Text>
           </View>
         </View>
         <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn} activeOpacity={0.75}>
